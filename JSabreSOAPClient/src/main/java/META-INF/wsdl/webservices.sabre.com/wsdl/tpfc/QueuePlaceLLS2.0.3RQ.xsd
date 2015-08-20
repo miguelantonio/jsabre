@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:sws="http://webservices.sabre.com/sabreXML/2011/10" xmlns:xs="http://www.w3.org/2001/XMLSchema" targetNamespace="http://webservices.sabre.com/sabreXML/2011/10" elementFormDefault="qualified">
+	<xs:include schemaLocation="sws_common.xsd"/>
+	<xs:element name="QueuePlaceRQ">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="MultiQueuePlace" minOccurs="0">
+					<xs:complexType>
+						<xs:sequence>
+							<xs:element name="QueueIdentifier" maxOccurs="20">
+								<xs:complexType>
+									<xs:attribute name="Number" type="xs:string" use="required"/>
+									<xs:attribute name="PrefatoryInstructionCode" type="xs:string" use="required"/>
+									<xs:attribute name="PseudoCityCode" type="xs:string" use="required"/>
+								</xs:complexType>
+							</xs:element>
+						</xs:sequence>
+					</xs:complexType>
+				</xs:element>
+				<xs:element name="QueueInfo" minOccurs="0">
+					<xs:complexType>
+						<xs:sequence>
+							<xs:element name="QueueIdentifier" maxOccurs="3">
+								<xs:complexType>
+									<xs:attribute name="Name" type="xs:string" use="optional"/>
+									<xs:attribute name="Number" type="xs:string" use="optional"/>
+									<xs:attribute name="PrefatoryInstructionCode" type="xs:string" use="optional"/>
+									<xs:attribute name="PseudoCityCode" type="xs:string" use="optional"/>
+								</xs:complexType>
+							</xs:element>
+							<xs:element name="UniqueID" minOccurs="0" maxOccurs="6">
+								<xs:complexType>
+									<xs:attribute name="ID" type="xs:string" use="required"/>
+								</xs:complexType>
+							</xs:element>
+						</xs:sequence>
+					</xs:complexType>
+				</xs:element>
+			</xs:sequence>
+			<xs:attribute name="ReturnHostCommand" type="xs:boolean" use="optional"/>
+			<xs:attribute name="TimeStamp" type="xs:dateTime" use="optional"/>
+			<xs:attribute name="Version" type="xs:string" fixed="2.0.3" use="required"/>
+		</xs:complexType>
+	</xs:element>
+</xs:schema>

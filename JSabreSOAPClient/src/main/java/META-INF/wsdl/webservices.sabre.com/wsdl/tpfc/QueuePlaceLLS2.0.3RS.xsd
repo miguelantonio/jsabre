@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:sws="http://webservices.sabre.com/sabreXML/2011/10" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:stl="http://services.sabre.com/STL/v01" targetNamespace="http://webservices.sabre.com/sabreXML/2011/10" elementFormDefault="qualified">
+	<xs:import namespace="http://services.sabre.com/STL/v01" schemaLocation="STL_For_SabreProtocol_v.1.2.0.xsd"/>
+	<xs:include schemaLocation="sws_common.xsd"/>
+	<xs:element name="QueuePlaceRS">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="stl:ApplicationResults"/>
+				<xs:element name="QueueInfo" minOccurs="0" maxOccurs="20">
+					<xs:complexType>
+						<xs:sequence>
+							<xs:element name="QueueIdentifier" minOccurs="0">
+								<xs:complexType>
+									<xs:attribute name="Name" type="xs:string" use="optional"/>
+									<xs:attribute name="Number" type="xs:string" use="optional"/>
+									<xs:attribute name="PseudoCityCode" type="xs:string" use="optional"/>
+								</xs:complexType>
+							</xs:element>
+							<xs:element name="UniqueID" minOccurs="0">
+								<xs:complexType>
+									<xs:attribute name="ID" type="xs:string" use="optional"/>
+								</xs:complexType>
+							</xs:element>
+						</xs:sequence>
+						<xs:attribute name="DateTime" type="sws:dateTime" use="optional"/>
+					</xs:complexType>
+				</xs:element>
+				<xs:element name="Text" minOccurs="0" maxOccurs="unbounded" type="xs:string"/>
+			</xs:sequence>
+			<xs:attribute name="Version" type="xs:string" use="optional"/>
+		</xs:complexType>
+	</xs:element>
+</xs:schema>

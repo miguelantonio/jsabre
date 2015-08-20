@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:sws="http://webservices.sabre.com/sabreXML/2011/10" xmlns:xs="http://www.w3.org/2001/XMLSchema" targetNamespace="http://webservices.sabre.com/sabreXML/2011/10" elementFormDefault="qualified">
+	<xs:element name="TravelItineraryReadRQ">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="MessagingDetails">
+					<xs:complexType>
+						<xs:sequence>
+							<xs:element name="SubjectAreas" minOccurs="0">
+								<xs:complexType>
+									<xs:sequence>
+										<xs:element name="SubjectArea" type="xs:string" minOccurs="0" maxOccurs="unbounded">
+											<xs:annotation>
+												<xs:documentation>
+													PNR data which will be present in a response payload depends on the list of "SubjectArea" used in the request.
+													Subject Areas could be used to narrow down number of elements returned
+													"SubjectArea" can hold values including ACCOUNTING_LINES, AGENCY_ADDRESS, DK_NUMBER, PRICING_INFORMATION etc.
+													For complete list of "SubjectArea" refer TIR user guide.
+												</xs:documentation>
+											</xs:annotation>
+										</xs:element>
+									</xs:sequence>
+								</xs:complexType>
+							</xs:element>
+						</xs:sequence>
+					</xs:complexType>
+				</xs:element>
+				<xs:element name="UniqueID" minOccurs="0">
+					<xs:complexType>
+						<xs:attribute name="ID" type="xs:string" use="required">
+							<xs:annotation>
+								<xs:documentation>
+									The Unique 6 alpha character Record locator of a PNR. Value="[A-Z]{6}"
+									The response will be populated with PNR details of the Record Locator.
+								</xs:documentation>
+							</xs:annotation>
+						</xs:attribute>
+					</xs:complexType>
+				</xs:element>
+				<xs:element name="EchoToken" type="xs:string" minOccurs="0"/>
+				<xs:element name="ReturnOptions" minOccurs="0">
+					<xs:complexType>
+						<xs:attribute name="UnmaskCreditCard" type="xs:boolean" default="false">
+							<xs:annotation>
+								<xs:documentation>
+									User having EPR keyword CCVIEW will now be able to see the credit card information in the
+									response if the request is passed with the attribute UnmaskCreditCard as true.
+									For all other cases the credit card information will remain masked
+								</xs:documentation>
+							</xs:annotation>
+						</xs:attribute>
+					</xs:complexType>
+				</xs:element>
+			</xs:sequence>
+			<xs:attribute name="TimeStamp" type="xs:dateTime" use="optional">
+				<xs:annotation>
+					<xs:documentation>
+						Time stamp of request
+					</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="Version" type="xs:string" use="required">
+				<xs:annotation>
+					<xs:documentation>
+						TIR Version number
+					</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+		</xs:complexType>
+	</xs:element>
+</xs:schema>
